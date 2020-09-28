@@ -22,7 +22,7 @@ pipeline {
                 sh """#!/bin/bash
                 ENVCOUNT=\$(apictl list envs --format {{.}} | wc -l)
                 if [ "\$ENVCOUNT" == "0" ]; then
-                    apictl add-env -e dev --apim https://localhost:9443
+                    apictl add-env -e dev --apim https://dev.apim.mycorp.com:9443
                 fi
                 """
             }
