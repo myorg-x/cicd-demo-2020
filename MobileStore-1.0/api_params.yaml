@@ -2,9 +2,8 @@ environments:
   - name: dev
     endpoints:
       production:
-        url: http://mobilestore-dev.mycorp.com:4020/mobile-devices
-      sandbox:
-        url: http://mobilestore-dev.mycorp.com:4020/mobile-devices
+        url: http://mobilestore-dev.mycorp.com:4020
+        url: http://mobilestore-dev.mycorp.com:4020
   - name: prod
     endpoints:
       production:
