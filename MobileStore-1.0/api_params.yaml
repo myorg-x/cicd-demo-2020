@@ -1,21 +1,11 @@
 environments:
-  - name: 310
-    endpoints:
-      production:
-      sandbox:
   - name: dev
     endpoints:
       production:
+        url: http://mobilestore-dev.mycorp.com:4020/mobile-devices
       sandbox:
-  - name: local
-    endpoints:
-      production:
-      sandbox:
+        url: http://mobilestore-dev.mycorp.com:4020/mobile-devices
   - name: prod
-    endpoints:
-      production:
-      sandbox:
-  - name: ten1.com
     endpoints:
       production:
       sandbox:
