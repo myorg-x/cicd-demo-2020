@@ -11,6 +11,26 @@
 			"item": [
 				{
 					"name": "Get all mobile devices in the store",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "87ae7ac1-4bd5-4c2a-8816-54a645c6968c",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Count is '3'\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.count).to.eql(3);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -206,6 +226,175 @@
 							"body": "{\n \"name\": \"<string>\",\n \"id\": \"<integer>\",\n \"category\": {\n  \"id\": -28508439,\n  \"name\": \"Ut occaecat laborum\"\n },\n \"manufacturer\": \"<string>\",\n \"model\": \"<string>\",\n \"price\": \"<string>\",\n \"tags\": [\n  {\n   \"id\": -92008351,\n   \"name\": \"culpa dolor\"\n  },\n  {\n   \"id\": -30736781,\n   \"name\": \"nulla\"\n  }\n ],\n \"status\": \"<string>\"\n}"
 						}
 					]
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "orders",
+			"item": [
+				{
+					"name": "{order Id}",
+					"item": [
+						{
+							"name": "Find purchase order by ID",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "cc52e6b5-fcc4-4928-9caa-4e059e8c0b0f",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Status is 'placed'\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.status).to.eql(\"placed\");",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/orders/:orderId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"orders",
+										":orderId"
+									],
+									"variable": [
+										{
+											"key": "orderId",
+											"value": "1234",
+											"type": "string",
+											"description": "(Required) ID of the order that needs to be fetched"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Order not found",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/orders/:orderId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"orders",
+												":orderId"
+											],
+											"variable": [
+												{
+													"key": "orderId"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "successful operation",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/orders/:orderId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"orders",
+												":orderId"
+											],
+											"variable": [
+												{
+													"key": "orderId"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"id\": 1,\n \"deviceId\": 1,\n \"quantity\": 5,\n \"shipDate\": \"2020-06-17T04:40:55.605Z\",\n \"status\": \"placed\",\n \"complete\": false\n}"
+								},
+								{
+									"name": "Invalid ID supplied",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/orders/:orderId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"orders",
+												":orderId"
+											],
+											"variable": [
+												{
+													"key": "orderId"
+												}
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
 				}
 			],
 			"protocolProfileBehavior": {}
