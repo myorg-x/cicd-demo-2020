@@ -11,6 +11,26 @@
 			"item": [
 				{
 					"name": "Get all mobile devices in the store",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "87ae7ac1-4bd5-4c2a-8816-54a645c6968c",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Count is '3'\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.count).to.eql(3);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"auth": {
 							"type": "bearer",
