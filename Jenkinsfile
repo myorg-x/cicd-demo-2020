@@ -28,11 +28,20 @@ pipeline {
             }
         }
 
-        stage('Deploy APIs To "Live" Environment') {
+        stage('Deploy APIs To "Dev" Environment') {
             steps {
                 sh """
                 apictl login dev -u admin -p admin -k
                 apictl vcs deploy -e dev
+                """
+            }
+        }
+
+        stage('Run Tests in "Dev" Environment') {
+            steps {
+                sh """#!/bin/bash
+                pwd
+                bash tests/test.sh
                 """
             }
         }
