@@ -40,10 +40,8 @@ pipeline {
         stage('Run Tests in "Dev" Environment') {
             steps {
                 sh """#!/bin/bash
-                pwd
-                ls
-        
-                bash tests/test.sh
+                testfiles=$(find tests -iname "*.sh")
+                for i in $testfiles ; do bash $i; done
                 """
             }
         }
