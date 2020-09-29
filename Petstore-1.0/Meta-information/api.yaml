@@ -3,13 +3,13 @@ id:
   apiName: Petstore
   version: "1.0"
   id: 0
-uuid: c2feefc1-2ee0-4d96-b363-05f28741e3e0
+uuid: bb07fa44-f2ed-443b-9c1b-3713b120805c
 type: HTTP
 context: /petstore/1.0
 contextTemplate: /petstore/{version}
 tags: []
 documents: []
-lastUpdated: Sep 29, 2020 1:25:14 PM
+lastUpdated: Sep 29, 2020 9:32:34 PM
 availableTiers:
  -
   name: Unlimited
@@ -32,6 +32,7 @@ endpointSecured: false
 endpointAuthDigest: false
 transports: http,https
 advertiseOnly: false
+apiOwner: alice
 subscriptionAvailability: current_tenant
 corsConfiguration:
   corsConfigurationEnabled: false
@@ -64,7 +65,7 @@ keyManagers:
  - all
 environments:
  - Production and Sandbox
-createdTime: "1601385883613"
+createdTime: "1601395044976"
 additionalProperties: {}
 monetizationProperties: {}
 isMonetizationEnabled: false
