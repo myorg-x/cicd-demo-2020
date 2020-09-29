@@ -41,6 +41,7 @@ pipeline {
             steps {
                 sh """#!/bin/bash
                 pwd
+                ls
         
                 bash tests/test.sh
                 """
