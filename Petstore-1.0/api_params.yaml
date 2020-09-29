@@ -1,0 +1,19 @@
+environments:
+  - name: dev
+    endpoints:
+      production:
+        url: http://petstore-dev.mycorp.com:4020
+      sandbox:
+        url: http://petstore-dev.mycorp.com:4020
+  - name: prod
+    endpoints:
+      production:
+        url: http://petstore-prod.mycorp.com:4020
+      sandbox:
+        url: http://petstore-prod.mycorp.com:4020
+
+
+deploy:
+  import:
+    update: true
+    preserveProvider: true

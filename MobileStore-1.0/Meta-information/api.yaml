@@ -1,0 +1,18 @@
+id:
+  providerName: admin
+  apiName: MobileStore
+  version: "1.0"
+description: This is the API used for Altronica Inc
+type: HTTP
+context: /MobileStore/1.0
+contextTemplate: /MobileStore/{version}
+tags:
+- devices
+availableTiers:
+- name: Unlimited
+status: PUBLISHED
+visibility: public
+transports: http,https
+productionUrl: http://localhost:8080
+sandboxUrl: http://localhost:8081
+enableStore: true
