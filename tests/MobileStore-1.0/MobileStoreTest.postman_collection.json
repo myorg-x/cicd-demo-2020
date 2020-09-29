@@ -1,0 +1,223 @@
+{
+	"info": {
+		"_postman_id": "fcb060d2-06fa-4e37-8064-0183803fdf86",
+		"name": "MobileStore",
+		"description": "This is the API used for Altronica Inc\n\nContact Support:\n Email: apiteam@mobilepioneer.io",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "mobile-devices",
+			"item": [
+				{
+					"name": "Get all mobile devices in the store",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/mobile-devices",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"mobile-devices"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Succesfully returned the devices",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/mobile-devices",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"mobile-devices"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"count\": 85555503,\n \"list\": [\n  {\n   \"name\": \"officia quis dolor magna\",\n   \"id\": 31146655,\n   \"category\": {\n    \"id\": -95999927,\n    \"name\": \"do nisi\"\n   },\n   \"manufacturer\": \"mollit labore culpa\",\n   \"model\": \"et\",\n   \"price\": \"proident\",\n   \"tags\": [\n    {\n     \"id\": 22292742,\n     \"name\": \"reprehenderit\"\n    },\n    {\n     \"id\": 38558931,\n     \"name\": \"qui mollit minim\"\n    }\n   ],\n   \"status\": \"available\"\n  },\n  {\n   \"name\": \"aute eiusmod magna minim\",\n   \"id\": -48178775,\n   \"category\": {\n    \"id\": -77582425,\n    \"name\": \"non tempor \"\n   },\n   \"manufacturer\": \"aliquip eiusmod id\",\n   \"model\": \"sit nostrud\",\n   \"price\": \"in aute\",\n   \"tags\": [\n    {\n     \"id\": -16539186,\n     \"name\": \"cupidat\"\n    },\n    {\n     \"id\": 11777602,\n     \"name\": \"minim dolor consectetur non occaeca\"\n    }\n   ],\n   \"status\": \"available\"\n  }\n ]\n}"
+						},
+						{
+							"name": "Invalid input",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/mobile-devices",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"mobile-devices"
+									]
+								}
+							},
+							"status": "Method Not Allowed",
+							"code": 405,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "Add a new mobile device to the store",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d5815553-f979-48a8-ba06-c7bbfb647e7b",
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"device1\",\n    \"id\": 1234,\n    \"category\": {\n        \"id\": 54391425,\n        \"name\": \"commodo amet\"\n    },\n    \"manufacturer\": \"ABC\",\n    \"tags\": [\n        {\n            \"id\": 75090876,\n            \"name\": \"in proident labore veniam\"\n        },\n        {\n            \"id\": 60064524,\n            \"name\": \"dolor ut\"\n        }\n    ],\n    \"status\": \"available\"\n}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/mobile-devices",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"mobile-devices"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Invalid input",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"<string>\",\n    \"id\": \"<integer>\",\n    \"category\": {\n        \"id\": -28508439,\n        \"name\": \"Ut occaecat laborum\"\n    },\n    \"manufacturer\": \"<string>\",\n    \"model\": \"<string>\",\n    \"price\": \"<string>\",\n    \"tags\": [\n        {\n            \"id\": -92008351,\n            \"name\": \"culpa dolor\"\n        },\n        {\n            \"id\": -30736781,\n            \"name\": \"nulla\"\n        }\n    ],\n    \"status\": \"<string>\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/mobile-devices",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"mobile-devices"
+									]
+								}
+							},
+							"status": "Method Not Allowed",
+							"code": 405,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Sucessfully created the device",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"<string>\",\n    \"id\": \"<integer>\",\n    \"category\": {\n        \"id\": -28508439,\n        \"name\": \"Ut occaecat laborum\"\n    },\n    \"manufacturer\": \"<string>\",\n    \"model\": \"<string>\",\n    \"price\": \"<string>\",\n    \"tags\": [\n        {\n            \"id\": -92008351,\n            \"name\": \"culpa dolor\"\n        },\n        {\n            \"id\": -30736781,\n            \"name\": \"nulla\"\n        }\n    ],\n    \"status\": \"<string>\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/mobile-devices",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"mobile-devices"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"name\": \"<string>\",\n \"id\": \"<integer>\",\n \"category\": {\n  \"id\": -28508439,\n  \"name\": \"Ut occaecat laborum\"\n },\n \"manufacturer\": \"<string>\",\n \"model\": \"<string>\",\n \"price\": \"<string>\",\n \"tags\": [\n  {\n   \"id\": -92008351,\n   \"name\": \"culpa dolor\"\n  },\n  {\n   \"id\": -30736781,\n   \"name\": \"nulla\"\n  }\n ],\n \"status\": \"<string>\"\n}"
+						}
+					]
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"variable": [
+		{
+			"id": "baseUrl",
+			"key": "baseUrl",
+			"value": "https://localhost/mobile-store",
+			"type": "string"
+		}
+	],
+	"protocolProfileBehavior": {}
+}

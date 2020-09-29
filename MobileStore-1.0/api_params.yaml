@@ -1,24 +1,16 @@
 environments:
-  - name: 310
-    endpoints:
-      production:
-      sandbox:
   - name: dev
     endpoints:
       production:
+        url: http://mobilestore-dev.mycorp.com:4010
       sandbox:
-  - name: local
-    endpoints:
-      production:
-      sandbox:
+        url: http://mobilestore-dev.mycorp.com:4010
   - name: prod
     endpoints:
       production:
+        url: http://mobilestore-prod.mycorp.com:4010
       sandbox:
-  - name: ten1.com
-    endpoints:
-      production:
-      sandbox:
+        url: http://mobilestore-prod.mycorp.com:4010
 
 deploy:
   import:

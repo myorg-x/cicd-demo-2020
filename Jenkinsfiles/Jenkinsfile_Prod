@@ -22,17 +22,17 @@ pipeline {
                 sh """#!/bin/bash
                 ENVCOUNT=\$(apictl list envs --format {{.}} | wc -l)
                 if [ "\$ENVCOUNT" == "0" ]; then
-                    apictl add-env -e dev --apim https://localhost:9443
+                    apictl add-env -e prod --apim https://prod.mycorp.com:9443
                 fi
                 """
             }
         }
 
-        stage('Deploy APIs To "Live" Environment') {
+        stage('Deploy APIs To "Prod" Environment') {
             steps {
                 sh """
-                apictl login dev -u admin -p admin -k
-                apictl vcs deploy -e dev
+                apictl login prod -u admin -p admin -k
+                apictl vcs deploy -e prod
                 """
             }
         }
