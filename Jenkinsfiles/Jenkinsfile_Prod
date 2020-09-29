@@ -7,6 +7,7 @@ pipeline {
     }
     environment { 
         PATH = "/root/apictl:$PATH"
+        ADMIN = credentials('admin_user')
     }
     options {
         buildDiscarder logRotator( 
@@ -31,10 +32,17 @@ pipeline {
         stage('Deploy APIs To "Prod" Environment') {
             steps {
                 sh """
-                apictl login prod -u admin -p admin -k
+                apictl login prod -u \$ADMIN_USR -p \$ADMIN_PSW -k
                 apictl vcs deploy -e prod
                 """
             }
         }
     }   
+    post { 
+        always { 
+            sh """
+            apictl logout prod
+            """
+        }
+    }
 }

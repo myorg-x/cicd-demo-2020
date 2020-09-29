@@ -7,6 +7,7 @@ pipeline {
     }
     environment { 
         PATH = "/root/apictl:$PATH"
+        ADMIN = credentials('admin_user')
     }
     options {
         buildDiscarder logRotator( 
@@ -31,7 +32,7 @@ pipeline {
         stage('Deploy APIs To "Dev" Environment') {
             steps {
                 sh """
-                apictl login dev -u admin -p admin -k
+                apictl login dev -u \$ADMIN_USR -p \$ADMIN_PSW -k
                 apictl vcs deploy -e dev
                 """
             }
@@ -45,5 +46,12 @@ pipeline {
                 """
             }
         }
-    }   
+    }
+    post { 
+        always { 
+            sh """
+            apictl logout dev
+            """
+        }
+    }
 }
