@@ -114,6 +114,37 @@ components:
           items:
             $ref: '#/components/schemas/Device'
           type: array
+    Order:
+      example:
+        complete: false
+        deviceId: 1
+        id: 1
+        quantity: 5
+        shipDate: "2020-06-17T04:40:55.605Z"
+        status: placed
+      properties:
+        complete:
+          default: false
+          type: boolean
+        deviceId:
+          format: int64
+          type: integer
+        id:
+          format: int64
+          type: integer
+        quantity:
+          format: int32
+          type: integer
+        shipDate:
+          format: date-time
+          type: string
+        status:
+          description: Order Status
+          enum:
+          - placed
+          - approved
+          - delivered
+          type: string
     Tag:
       properties:
         id:
@@ -239,6 +270,77 @@ paths:
       summary: uploads an image to the device
       tags:
       - devices
+  /orders:
+    post:
+      operationId: placeOrder
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Order'
+        description: order placed for purchasing the device
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+          description: successfully created the order
+        "400":
+          description: Invalid Order
+      summary: Place an order for a device
+      tags:
+      - orders
+  /orders/{orderId}:
+    delete:
+      operationId: deleteOrder
+      parameters:
+      - description: ID of the order that needs to be deleted
+        explode: false
+        in: path
+        name: orderId
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      responses:
+        "200":
+          description: successfully deleted the order
+        "400":
+          description: Invalid ID supplied
+        "404":
+          description: Order not found
+      summary: Delete purchase order by ID
+      tags:
+      - orders
+    get:
+      operationId: getOrderById
+      parameters:
+      - description: ID of the order that needs to be fetched
+        explode: false
+        in: path
+        name: orderId
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+          description: successful operation
+        "400":
+          description: Invalid ID supplied
+        "404":
+          description: Order not found
+      summary: Find purchase order by ID
+      tags:
+      - orders
 servers:
 - url: https://localhost/mobile-store
 tags:
@@ -247,3 +349,8 @@ tags:
     description: Find out more
     url: http://mobilepioneer.io
   name: devices
+- description: Access to Mobile Device orders
+  externalDocs:
+    description: Find out more about our store ...
+    url: http://mobilepioneer.io
+  name: orders
